@@ -1,7 +1,7 @@
-import React from "react";
-import Icon from "./icon";
-import {tv, type VariantProps} from "tailwind-variants";
-import SpinnerIcon from "../assets/icons/spinner.svg?react";
+import type React from "react";
+import { tv, type VariantProps } from "tailwind-variants";
+import SpinnerIcon from "../../assets/icons/spinner.svg?react";
+import Icon from "../atom/icon";
 
 export const buttonIconVariants = tv({
 	base: "inline-flex items-center justify-center cursor-pointer transition",
@@ -76,7 +76,7 @@ export default function ButtonIcon({
 			<Icon
 				svg={handling ? SpinnerIcon : icon}
 				animate={handling}
-				className={buttonIconIconVariants({variant, size})}
+				className={buttonIconIconVariants({ variant, size })}
 			/>
 		</button>
 	);

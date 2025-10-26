@@ -1,8 +1,8 @@
-import React from "react";
-import Text from "./text";
-import {tv, type VariantProps} from "tailwind-variants";
 import cx from "classnames";
+import type React from "react";
+import { tv, type VariantProps } from "tailwind-variants";
 import Skeleton from "./skeleton";
+import Text from "./text";
 
 export const badgeVariants = tv({
 	base: "inline-flex items-center justify-center rounded",
@@ -64,17 +64,17 @@ export default function Badge({
 			<Skeleton
 				rounded="full"
 				className={cx(
-					badgeVariants({variant: "none"}),
-					badgeSkeletonVariants({size}),
-					className
+					badgeVariants({ variant: "none" }),
+					badgeSkeletonVariants({ size }),
+					className,
 				)}
 			/>
 		);
 	}
 
 	return (
-		<div className={badgeVariants({variant, size, className})} {...props}>
-			<Text className={badgeTextVariants({size})}>{children}</Text>
+		<div className={badgeVariants({ variant, size, className })} {...props}>
+			<Text className={badgeTextVariants({ size })}>{children}</Text>
 		</div>
 	);
 }

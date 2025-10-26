@@ -1,6 +1,6 @@
-import {FastifyInstance} from "fastify";
-import {PhotosService} from "./photos-service.ts";
-import {ZodError} from "zod";
+import type { FastifyInstance } from "fastify";
+import type { PhotosService } from "./photos-service.ts";
+import { ZodError } from "zod";
 import {
 	createPhotoSchema,
 	updatePhotoSchema,
@@ -8,11 +8,11 @@ import {
 	photoQuerySchema,
 	managePhotoAlbumsSchema,
 } from "./photos-interfaces.ts";
-import {MultipartFile} from "@fastify/multipart";
+import type { MultipartFile } from "@fastify/multipart";
 
 export async function photosRoutes(
 	fastify: FastifyInstance,
-	photosService: PhotosService
+	photosService: PhotosService,
 ) {
 	// GET /photos - with optional album filter
 	fastify.get("/photos", async (request, reply) => {
@@ -27,12 +27,12 @@ export async function photosRoutes(
 				return;
 			}
 
-			const {albumId, q} = queryResult.data;
+			const { albumId, q } = queryResult.data;
 			const photos = await photosService.getAllPhotos(albumId, q);
 			reply.send(photos);
 		} catch (error) {
 			console.error("Error getting photos:", error);
-			reply.status(500).send({error: "Failed to get photos"});
+			reply.status(500).send({ error: "Failed to get photos" });
 		}
 	});
 
@@ -49,18 +49,18 @@ export async function photosRoutes(
 				return;
 			}
 
-			const {id} = paramsResult.data;
+			const { id } = paramsResult.data;
 			const photo = await photosService.getPhotoById(id);
 
 			if (!photo) {
-				reply.status(404).send({error: "Photo not found"});
+				reply.status(404).send({ error: "Photo not found" });
 				return;
 			}
 
 			reply.send(photo);
 		} catch (error) {
 			console.error("Error getting photo:", error);
-			reply.status(500).send({error: "Failed to get photo"});
+			reply.status(500).send({ error: "Failed to get photo" });
 		}
 	});
 
@@ -90,7 +90,7 @@ export async function photosRoutes(
 				return;
 			}
 
-			reply.status(500).send({error: "Failed to create photo"});
+			reply.status(500).send({ error: "Failed to create photo" });
 		}
 	});
 
@@ -110,16 +110,16 @@ export async function photosRoutes(
 			const data = (await request.file()) as MultipartFile;
 
 			if (!data) {
-				reply.status(400).send({error: "No file uploaded"});
+				reply.status(400).send({ error: "No file uploaded" });
 				return;
 			}
 
-			const {id} = paramsResult.data;
+			const { id } = paramsResult.data;
 			const buffer = await data.toBuffer();
 			const photo = await photosService.uploadImage(id, buffer, data.filename);
 
 			if (!photo) {
-				reply.status(404).send({error: "Photo not found"});
+				reply.status(404).send({ error: "Photo not found" });
 				return;
 			}
 
@@ -155,18 +155,18 @@ export async function photosRoutes(
 				return;
 			}
 
-			const {id} = paramsResult.data;
+			const { id } = paramsResult.data;
 			const photo = await photosService.updatePhoto(id, bodyResult.data);
 
 			if (!photo) {
-				reply.status(404).send({error: "Photo not found"});
+				reply.status(404).send({ error: "Photo not found" });
 				return;
 			}
 
 			reply.send(photo);
 		} catch (error) {
 			console.error("Error updating photo:", error);
-			reply.status(500).send({error: "Failed to update photo"});
+			reply.status(500).send({ error: "Failed to update photo" });
 		}
 	});
 
@@ -183,18 +183,18 @@ export async function photosRoutes(
 				return;
 			}
 
-			const {id} = paramsResult.data;
+			const { id } = paramsResult.data;
 			const deleted = await photosService.deletePhoto(id);
 
 			if (!deleted) {
-				reply.status(404).send({error: "Photo not found"});
+				reply.status(404).send({ error: "Photo not found" });
 				return;
 			}
 
 			reply.status(204).send();
 		} catch (error) {
 			console.error("Error deleting photo:", error);
-			reply.status(500).send({error: "Failed to delete photo"});
+			reply.status(500).send({ error: "Failed to delete photo" });
 		}
 	});
 
@@ -220,21 +220,23 @@ export async function photosRoutes(
 				return;
 			}
 
-			const {id} = paramsResult.data;
+			const { id } = paramsResult.data;
 			const success = await photosService.managePhotoAlbums(
 				id,
-				bodyResult.data
+				bodyResult.data,
 			);
 
 			if (!success) {
-				reply.status(404).send({error: "Photo not found or invalid album IDs"});
+				reply
+					.status(404)
+					.send({ error: "Photo not found or invalid album IDs" });
 				return;
 			}
 
-			reply.send({message: "Photo albums updated successfully"});
+			reply.send({ message: "Photo albums updated successfully" });
 		} catch (error) {
 			console.error("Error managing photo albums:", error);
-			reply.status(500).send({error: "Failed to manage photo albums"});
+			reply.status(500).send({ error: "Failed to manage photo albums" });
 		}
 	});
 }

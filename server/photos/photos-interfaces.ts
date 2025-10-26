@@ -1,4 +1,4 @@
-import {z} from "zod";
+import { z } from "zod";
 
 // Zod schemas for validation
 export const createPhotoSchema = z.object({

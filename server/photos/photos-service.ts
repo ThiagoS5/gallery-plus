@@ -1,8 +1,8 @@
-import {randomUUID} from "crypto";
-import {DatabaseService} from "../services/database-service.ts";
-import {ImageService} from "../services/image-service.ts";
-import {Album, Photo} from "../models.ts";
-import {
+import { randomUUID } from "crypto";
+import type { DatabaseService } from "../services/database-service.ts";
+import type { ImageService } from "../services/image-service.ts";
+import type { Album, Photo } from "../models.ts";
+import type {
 	CreatePhotoRequest,
 	UpdatePhotoRequest,
 	ManagePhotoAlbumsRequest,
@@ -19,13 +19,13 @@ export class PhotosService {
 
 	private async populatePhotoAlbums(
 		photo: Photo,
-		photosOnAlbums: Array<{photoId: string; albumId: string}>
-	): Promise<Photo & {albums: Album[]}> {
+		photosOnAlbums: Array<{ photoId: string; albumId: string }>,
+	): Promise<Photo & { albums: Album[] }> {
 		const db = await this.dbService.readDatabase();
 		const albumPromises = photosOnAlbums
 			.filter((relation) => relation.photoId === photo.id)
 			.map((relation) =>
-				db.albums.find((album) => album.id === relation.albumId)
+				db.albums.find((album) => album.id === relation.albumId),
 			);
 
 		const albums = await Promise.all(albumPromises);
@@ -44,7 +44,7 @@ export class PhotosService {
 
 		if (q) {
 			photos = photos.filter((photo) =>
-				photo.title.toLowerCase().includes(q.toLowerCase())
+				photo.title.toLowerCase().includes(q.toLowerCase()),
 			);
 		}
 
@@ -58,16 +58,16 @@ export class PhotosService {
 
 		// Populate albumIds for each photo
 		const populatedPhotos = await Promise.all(
-			photos.map((photo) => this.populatePhotoAlbums(photo, db.photosOnAlbums))
+			photos.map((photo) => this.populatePhotoAlbums(photo, db.photosOnAlbums)),
 		);
 
 		return populatedPhotos;
 	}
 
 	async getPhotoById(
-		id: string
+		id: string,
 	): Promise<
-		| (Photo & {nextPhotoId: string | null; previousPhotoId: string | null})
+		| (Photo & { nextPhotoId: string | null; previousPhotoId: string | null })
 		| null
 	> {
 		const db = await this.dbService.readDatabase();
@@ -115,7 +115,7 @@ export class PhotosService {
 	async uploadImage(
 		photoId: string,
 		imageBuffer: Buffer,
-		filename: string
+		filename: string,
 	): Promise<Photo | null> {
 		const db = await this.dbService.readDatabase();
 		const photoIndex = db.photos.findIndex((photo) => photo.id === photoId);
@@ -137,13 +137,13 @@ export class PhotosService {
 
 		return await this.populatePhotoAlbums(
 			db.photos[photoIndex],
-			db.photosOnAlbums
+			db.photosOnAlbums,
 		);
 	}
 
 	async updatePhoto(
 		id: string,
-		updateData: UpdatePhotoRequest
+		updateData: UpdatePhotoRequest,
 	): Promise<Photo | null> {
 		const db = await this.dbService.readDatabase();
 		const photoIndex = db.photos.findIndex((photo) => photo.id === id);
@@ -157,7 +157,7 @@ export class PhotosService {
 
 		return await this.populatePhotoAlbums(
 			db.photos[photoIndex],
-			db.photosOnAlbums
+			db.photosOnAlbums,
 		);
 	}
 
@@ -181,7 +181,7 @@ export class PhotosService {
 
 		// Remove from albums relationships
 		db.photosOnAlbums = db.photosOnAlbums.filter(
-			(relation) => relation.photoId !== id
+			(relation) => relation.photoId !== id,
 		);
 
 		await this.dbService.writeDatabase(db);
@@ -199,7 +199,8 @@ export class PhotosService {
 		}
 
 		const relationExists = db.photosOnAlbums.some(
-			(relation) => relation.photoId === photoId && relation.albumId === albumId
+			(relation) =>
+				relation.photoId === photoId && relation.albumId === albumId,
 		);
 
 		if (relationExists) {
@@ -217,7 +218,7 @@ export class PhotosService {
 
 	async managePhotoAlbums(
 		photoId: string,
-		albumsData: ManagePhotoAlbumsRequest
+		albumsData: ManagePhotoAlbumsRequest,
 	): Promise<boolean> {
 		const db = await this.dbService.readDatabase();
 
@@ -228,7 +229,7 @@ export class PhotosService {
 		}
 
 		// Check if all provided albums exist
-		const {albumsIds} = albumsData;
+		const { albumsIds } = albumsData;
 		for (const albumId of albumsIds) {
 			const albumExists = db.albums.some((album) => album.id === albumId);
 			if (!albumExists) {
@@ -247,19 +248,19 @@ export class PhotosService {
 
 		// Albums to add: in desired but not in current
 		const albumsToAdd = [...desiredSet].filter(
-			(albumId) => !currentSet.has(albumId)
+			(albumId) => !currentSet.has(albumId),
 		);
 
 		// Albums to remove: in current but not in desired
 		const albumsToRemove = [...currentSet].filter(
-			(albumId) => !desiredSet.has(albumId)
+			(albumId) => !desiredSet.has(albumId),
 		);
 
 		// Remove photo from albums that should no longer contain it
 		db.photosOnAlbums = db.photosOnAlbums.filter(
 			(relation) =>
 				relation.photoId !== photoId ||
-				!albumsToRemove.includes(relation.albumId)
+				!albumsToRemove.includes(relation.albumId),
 		);
 
 		// Add photo to new albums

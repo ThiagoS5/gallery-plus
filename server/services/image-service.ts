@@ -1,7 +1,7 @@
-import {writeFile, unlink, mkdir} from "fs/promises";
-import {existsSync} from "fs";
-import {join, resolve, extname} from "path";
-import {randomUUID} from "crypto";
+import { writeFile, unlink, mkdir } from "fs/promises";
+import { existsSync } from "fs";
+import { join, resolve, extname } from "path";
+import { randomUUID } from "crypto";
 
 export class ImageService {
 	private imagesDir: string;
@@ -12,7 +12,7 @@ export class ImageService {
 
 	private async ensureImagesDirExists(): Promise<void> {
 		if (!existsSync(this.imagesDir)) {
-			await mkdir(this.imagesDir, {recursive: true});
+			await mkdir(this.imagesDir, { recursive: true });
 		}
 	}
 
@@ -20,9 +20,11 @@ export class ImageService {
 		// Validate image type
 		const allowedExtensions = [".jpg", ".jpeg", ".png"];
 		const ext = extname(filename).toLowerCase();
-		
+
 		if (!allowedExtensions.includes(ext)) {
-			throw new Error("Invalid image format. Only JPG, JPEG, and PNG are allowed.");
+			throw new Error(
+				"Invalid image format. Only JPG, JPEG, and PNG are allowed.",
+			);
 		}
 
 		// Check file size (50MB limit)
@@ -47,7 +49,7 @@ export class ImageService {
 	async deleteImage(imageId: string): Promise<void> {
 		const imagePath = join(this.imagesDir, imageId);
 		const extensions = [".jpg", ".jpeg", ".png"];
-		
+
 		for (const ext of extensions) {
 			const fullPath = `${imagePath}${ext}`;
 			if (existsSync(fullPath)) {
@@ -61,10 +63,14 @@ export class ImageService {
 		}
 	}
 
-	async replaceImage(oldImageId: string, imageBuffer: Buffer, filename: string): Promise<string> {
+	async replaceImage(
+		oldImageId: string,
+		imageBuffer: Buffer,
+		filename: string,
+	): Promise<string> {
 		// Delete old image
 		await this.deleteImage(oldImageId);
-		
+
 		// Upload new image
 		return await this.uploadImage(imageBuffer, filename);
 	}

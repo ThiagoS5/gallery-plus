@@ -1,5 +1,5 @@
 import React from "react";
-import {tv, type VariantProps} from "tailwind-variants";
+import { tv, type VariantProps } from "tailwind-variants";
 
 export const textVariants = tv({
 	base: "font-sans text-white",
@@ -36,9 +36,9 @@ export default function Text({
 	return React.createElement(
 		as,
 		{
-			className: textVariants({variant, className}),
+			className: textVariants({ variant, className }),
 			...props,
 		},
-		children
+		children,
 	);
 }

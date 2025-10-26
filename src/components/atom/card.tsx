@@ -1,5 +1,5 @@
-import {type VariantProps, tv} from "tailwind-variants";
 import React from "react";
+import { type VariantProps, tv } from "tailwind-variants";
 
 export const cardVariants = tv({
 	base: `
@@ -39,9 +39,9 @@ export default function Card({
 	return React.createElement(
 		as,
 		{
-			className: cardVariants({size, variant, className}),
+			className: cardVariants({ size, variant, className }),
 			...props,
 		},
-		children
+		children,
 	);
 }

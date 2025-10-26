@@ -1,4 +1,4 @@
-import {tv, type VariantProps} from "tailwind-variants";
+import { tv, type VariantProps } from "tailwind-variants";
 
 export const dividerVariants = tv({
 	base: "w-full h-px ",
@@ -28,6 +28,6 @@ export default function Divider({
 	...props
 }: DividerProps) {
 	return (
-		<div className={dividerVariants({className, orientation})} {...props} />
+		<div className={dividerVariants({ className, orientation })} {...props} />
 	);
 }

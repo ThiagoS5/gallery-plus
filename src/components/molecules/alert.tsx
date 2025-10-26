@@ -1,5 +1,5 @@
-import {tv, type VariantProps} from "tailwind-variants";
-import Text from "./text";
+import { tv, type VariantProps } from "tailwind-variants";
+import Text from "../atom/text";
 
 export const alertVariants = tv({
 	base: `
@@ -28,7 +28,7 @@ export default function Alert({
 	return (
 		<div
 			role="alert"
-			className={alertVariants({variant, className})}
+			className={alertVariants({ variant, className })}
 			{...props}
 		>
 			<Text>{children}</Text>

@@ -1,5 +1,5 @@
-import {type VariantProps, tv} from "tailwind-variants";
 import React from "react";
+import { type VariantProps, tv } from "tailwind-variants";
 
 export const containerVariants = tv({
 	base: "mx-auto",
@@ -28,9 +28,9 @@ export default function Container({
 	return React.createElement(
 		as,
 		{
-			className: containerVariants({size: "md", className}),
+			className: containerVariants({ size: "md", className }),
 			...props,
 		},
-		children
+		children,
 	);
 }
