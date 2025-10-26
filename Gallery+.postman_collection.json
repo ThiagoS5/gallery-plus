@@ -13,12 +13,8 @@
 				"header": [],
 				"url": {
 					"raw": "{{host}}/photos",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"photos"
-					],
+					"host": ["{{host}}"],
+					"path": ["photos"],
 					"query": [
 						{
 							"key": "albumId",
@@ -42,13 +38,8 @@
 				"header": [],
 				"url": {
 					"raw": "{{host}}/photos/64413f7b-d117-44e5-ba32-84545bbeaaa9",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"photos",
-						"64413f7b-d117-44e5-ba32-84545bbeaaa9"
-					],
+					"host": ["{{host}}"],
+					"path": ["photos", "64413f7b-d117-44e5-ba32-84545bbeaaa9"],
 					"query": [
 						{
 							"key": "albumId",
@@ -76,13 +67,8 @@
 				},
 				"url": {
 					"raw": "{{host}}/photos/015f90ba-2979-49c7-8cc1-13037d383b68",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"photos",
-						"015f90ba-2979-49c7-8cc1-13037d383b68"
-					],
+					"host": ["{{host}}"],
+					"path": ["photos", "015f90ba-2979-49c7-8cc1-13037d383b68"],
 					"query": [
 						{
 							"key": "albumId",
@@ -110,13 +96,8 @@
 				},
 				"url": {
 					"raw": "{{host}}/photos/015f90ba-2979-49c7-8cc1-13037d383b68",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"photos",
-						"015f90ba-2979-49c7-8cc1-13037d383b68"
-					],
+					"host": ["{{host}}"],
+					"path": ["photos", "015f90ba-2979-49c7-8cc1-13037d383b68"],
 					"query": [
 						{
 							"key": "albumId",
@@ -144,12 +125,8 @@
 				},
 				"url": {
 					"raw": "{{host}}/photos",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"photos"
-					]
+					"host": ["{{host}}"],
+					"path": ["photos"]
 				}
 			},
 			"response": []
@@ -171,14 +148,8 @@
 				},
 				"url": {
 					"raw": "{{host}}/photos/64413f7b-d117-44e5-ba32-84545bbeaaa9/image",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"photos",
-						"64413f7b-d117-44e5-ba32-84545bbeaaa9",
-						"image"
-					]
+					"host": ["{{host}}"],
+					"path": ["photos", "64413f7b-d117-44e5-ba32-84545bbeaaa9", "image"]
 				}
 			},
 			"response": []
@@ -199,14 +170,8 @@
 				},
 				"url": {
 					"raw": "{{host}}/photos/64413f7b-d117-44e5-ba32-84545bbeaaa9/albums",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"photos",
-						"64413f7b-d117-44e5-ba32-84545bbeaaa9",
-						"albums"
-					],
+					"host": ["{{host}}"],
+					"path": ["photos", "64413f7b-d117-44e5-ba32-84545bbeaaa9", "albums"],
 					"query": [
 						{
 							"key": "albumId",
@@ -225,12 +190,8 @@
 				"header": [],
 				"url": {
 					"raw": "{{host}}/albums",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"albums"
-					],
+					"host": ["{{host}}"],
+					"path": ["albums"],
 					"query": [
 						{
 							"key": "albumId",
@@ -249,13 +210,8 @@
 				"header": [],
 				"url": {
 					"raw": "{{host}}/albums/f26fe3d7-75ba-4f70-a8f2-b5e9f85afc5c",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"albums",
-						"f26fe3d7-75ba-4f70-a8f2-b5e9f85afc5c"
-					],
+					"host": ["{{host}}"],
+					"path": ["albums", "f26fe3d7-75ba-4f70-a8f2-b5e9f85afc5c"],
 					"query": [
 						{
 							"key": "albumId",
@@ -283,12 +239,8 @@
 				},
 				"url": {
 					"raw": "{{host}}/albums",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"albums"
-					],
+					"host": ["{{host}}"],
+					"path": ["albums"],
 					"query": [
 						{
 							"key": "albumId",
@@ -316,13 +268,8 @@
 				},
 				"url": {
 					"raw": "{{host}}/albums/2a9a8f06-5e7f-4819-b72d-590e322338cb",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"albums",
-						"2a9a8f06-5e7f-4819-b72d-590e322338cb"
-					],
+					"host": ["{{host}}"],
+					"path": ["albums", "2a9a8f06-5e7f-4819-b72d-590e322338cb"],
 					"query": [
 						{
 							"key": "albumId",
