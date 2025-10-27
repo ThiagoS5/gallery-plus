@@ -6,26 +6,33 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "pnpm build-server && vite build",
-		"lint": "eslint .",
 		"preview": "vite preview",
 		"build-server": "tsc --noEmit -p tsconfig.server.json && tsup",
 		"dev-server": "tsup --watch --onSuccess \"node server/dist/main.js\"",
-		"run-server": "node server/dist/main.js"
+		"run-server": "node server/dist/main.js",
+		"format": "biome format --write .",
+		"lint": "biome lint .",
+		"check": "biome check --apply ."
 	},
 	"dependencies": {
 		"@fastify/cors": "8.5.0",
 		"@fastify/multipart": "^8.0.0",
 		"@fastify/static": "^7.0.0",
+		"@hookform/resolvers": "^5.2.2",
+		"@radix-ui/react-dialog": "^1.1.15",
 		"@tailwindcss/vite": "^4.1.10",
 		"classnames": "^2.5.1",
 		"fastify": "^4.24.3",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
+		"react-hook-form": "^7.65.0",
 		"tailwind-variants": "^1.0.0",
 		"tailwindcss": "^4.1.10",
+		"tw-animate-css": "^1.4.0",
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {
+		"@arthurrios/biome-config": "^1.1.4",
 		"@biomejs/biome": "2.3.1",
 		"@eslint/js": "^9.25.0",
 		"@types/node": "^20.10.0",
