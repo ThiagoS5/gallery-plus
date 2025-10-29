@@ -16,6 +16,7 @@ import {
 import ImagePreview from "../../../components/molecules/image-preview";
 import InputSingleFile from "../../../components/molecules/input-single-file";
 import type { Album } from "../../albums/models/album";
+import { MOCK_ALBUMS_LIST } from "../../../mocks/data";
 
 interface PhotoNewDialog {
   trigger: React.ReactNode;
@@ -26,10 +27,7 @@ export default function photoNewDialog({ trigger }: PhotoNewDialog) {
   // TODO: mock
   const isLoadingAlbum = false;
   const loading = isLoadingAlbum;
-  const mockAlbum: Album[] = [
-    { id: "1", title: "tree" },
-    { id: "a2", title: "Paisagens" },
-  ];
+  const mockAlbum: Album[] = MOCK_ALBUMS_LIST;
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
@@ -50,28 +48,35 @@ export default function photoNewDialog({ trigger }: PhotoNewDialog) {
           />
           <div className="space-y-3">
             <Text variant="label-small">Selecionar álbuns</Text>
-            {!loading &&
-              mockAlbum.length > 0 &&
-              mockAlbum.map((album) => (
-                <Button
-                  key={album.id}
-                  variant="ghost"
-                  size="sm"
-                  className="truncate"
-                ></Button>
-              ))}
-            {loading &&
-              Array.from({ length: 5 }).map((_, index) => (
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                <Skeleton className="h-7 w-20" key={`album-loading-${index}`} />
-              ))}
+            <div className="flex flex-wrap gap-3">
+              {!loading &&
+                mockAlbum.length > 0 &&
+                mockAlbum.map((album) => (
+                  <Button
+                    key={album.id}
+                    variant="ghost"
+                    size="sm"
+                    className="truncate"
+                  >
+                    {album.title}
+                  </Button>
+                ))}
+              {loading &&
+                Array.from({ length: 5 }).map((_, index) => (
+                  <Skeleton
+                    // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                    key={`album-loading-${index}`}
+                    className="h-7 w-20"
+                  />
+                ))}
+            </div>
           </div>
         </DialogBody>
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="secondary">Cancelar</Button>
-            <Button>Adicionar</Button>
           </DialogClose>
+          <Button>Adicionar</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

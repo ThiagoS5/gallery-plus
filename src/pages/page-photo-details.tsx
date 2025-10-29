@@ -7,6 +7,7 @@ import ImagePreview from "../components/molecules/image-preview";
 import AlbumsListSelectable from "../contexts/albums/components/albums-list-selectable";
 import PhotosNavigator from "../contexts/photos/components/photos-navigator";
 import type { Photo } from "../contexts/photos/models/photo";
+import { MOCK_ALBUMS_LIST } from "../mocks/data";
 
 export default function PagePhotoDetails() {
   const { id } = useParams();
@@ -55,13 +56,7 @@ export default function PagePhotoDetails() {
           <Text as="h3" variant="heading-medium" className="mb-6">
             Álbuns
           </Text>
-          <AlbumsListSelectable
-            photo={photo}
-            albums={[
-              { id: "1", title: "Familia" },
-              { id: "a2", title: "Paisagens" },
-            ]}
-          />
+          <AlbumsListSelectable photo={photo} albums={MOCK_ALBUMS_LIST} />
         </div>
       </div>
     </Container>
