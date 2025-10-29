@@ -71,7 +71,6 @@ export default function InputSingleFile({
   function isValidSize() {
     return fileSize <= maxFileSizeInMB * 1024 * 1024;
   }
-  //A multiplicação por 1024 duas vezes converte megabytes para bytes
   function isValidFile() {
     return isValidExtension() && isValidSize();
   }
