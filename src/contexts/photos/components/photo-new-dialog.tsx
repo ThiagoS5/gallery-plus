@@ -17,19 +17,32 @@ import ImagePreview from "../../../components/molecules/image-preview";
 import InputSingleFile from "../../../components/molecules/input-single-file";
 import type { Album } from "../../albums/models/album";
 import { MOCK_ALBUMS_LIST } from "../../../mocks/data";
+import { photoNewFormSchema, type PhotoNewFormSchema } from "../schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 
 interface PhotoNewDialog {
   trigger: React.ReactNode;
 }
 
 export default function photoNewDialog({ trigger }: PhotoNewDialog) {
-  const form = useForm();
+  const form = useForm<PhotoNewFormSchema>({
+    resolver: zodResolver(photoNewFormSchema),
+  });
+  const [modalOpen, setModalOpen] = useState(false);
   // TODO: mock
   const isLoadingAlbum = false;
   const loading = isLoadingAlbum;
   const mockAlbum: Album[] = MOCK_ALBUMS_LIST;
+
+  useEffect(() => {
+    if (!modalOpen) {
+      form.reset();
+    }
+  }, [modalOpen, form]);
+
   return (
-    <Dialog>
+    <Dialog open={modalOpen} onOpenChange={setModalOpen}>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent>
         <DialogHeader>Adicionar foto</DialogHeader>
