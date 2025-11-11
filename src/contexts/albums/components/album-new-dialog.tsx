@@ -15,6 +15,7 @@ import {
 import ImagePreview from "../../../components/molecules/image-preview";
 import { MOCK_PHOTOS_LIST } from "../../../mocks/data";
 import PhotoImageSelectable from "../../photos/components/photo-image-selectable";
+import usePhotos from "../../photos/hooks/use-photos";
 import type { Photo } from "../../photos/models/photo";
 
 interface AlbumNewDialogProps {
@@ -22,10 +23,7 @@ interface AlbumNewDialogProps {
 }
 
 export default function albumNewDialog({ trigger }: AlbumNewDialogProps) {
-  // TODO: utilizar na api
-  const isLoadingPhotos = false;
-  const loading = isLoadingPhotos;
-  const photos: Photo[] = MOCK_PHOTOS_LIST;
+  const { photos, isLoadingPhotos } = usePhotos();
 
   function handleTogglePhoto(selected: boolean, photoId: string) {
     console.log(selected, photoId);
@@ -42,28 +40,22 @@ export default function albumNewDialog({ trigger }: AlbumNewDialogProps) {
             <Text as="div" variant="label-small">
               Fotos cadastradas
             </Text>
-            {!loading && photos.length > 0 && (
+            {!isLoadingPhotos && photos.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {photos.map((photo) => (
                   <PhotoImageSelectable
                     key={photo.id}
-                    src={`/images/${photo.imageId}`}
+                    src={`${import.meta.env.VITE_IMAGES_URL}/${photo.imageId}`}
                     title={photo.title}
                     imageClassName="w-20 h-20"
                     onSelectImage={(selected) =>
                       handleTogglePhoto(selected, photo.id)
                     }
                   />
-                  // <ImagePreview
-                  //   key={photo.id}
-                  //   src={`/images/${photo.imageId}`}
-                  //   title={photo.title}
-                  //   className="w-20 h-20"
-                  // />
                 ))}
               </div>
             )}
-            {loading && (
+            {isLoadingPhotos && (
               <div className="flex flex-wrap gap-2">
                 {Array.from({ length: 4 }).map((_, index) => (
                   <Skeleton
@@ -74,7 +66,7 @@ export default function albumNewDialog({ trigger }: AlbumNewDialogProps) {
                 ))}
               </div>
             )}
-            {!loading && photos.length === 0 && (
+            {!isLoadingPhotos && photos.length === 0 && (
               <div className="w-full flex flex-col justify-center items-center gap-3">
                 <SelectCheckedBoxIllustration />
                 <Text variant="paragraph-medium" className="text-center">

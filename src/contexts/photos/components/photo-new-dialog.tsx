@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../../components/atom/button";
 import InputText from "../../../components/atom/input-text";
@@ -15,25 +16,16 @@ import {
 } from "../../../components/molecules/dialog";
 import ImagePreview from "../../../components/molecules/image-preview";
 import InputSingleFile from "../../../components/molecules/input-single-file";
-import type { Album } from "../../albums/models/album";
-import { MOCK_ALBUMS_LIST } from "../../../mocks/data";
-import { photoNewFormSchema, type PhotoNewFormSchema } from "../schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import useAlbums from "../../albums/hooks/use-albums";
 
 interface PhotoNewDialog {
   trigger: React.ReactNode;
 }
 
 export default function photoNewDialog({ trigger }: PhotoNewDialog) {
-  const form = useForm<PhotoNewFormSchema>({
-    resolver: zodResolver(photoNewFormSchema),
-  });
+  const form = useForm();
   const [modalOpen, setModalOpen] = useState(false);
-  // TODO: mock
-  const isLoadingAlbum = false;
-  const loading = isLoadingAlbum;
-  const mockAlbum: Album[] = MOCK_ALBUMS_LIST;
+  const { albums, isLoadingAlbums } = useAlbums();
 
   useEffect(() => {
     if (!modalOpen) {
@@ -54,6 +46,7 @@ export default function photoNewDialog({ trigger }: PhotoNewDialog) {
             Você pode selecionar arquivo em PNG, JPG ou JPEG
           </Alert>
           <InputSingleFile
+            {...form.register("file")}
             form={form}
             allowedExtensions={["png", "jpg", "jpeg"]}
             maxFileSizeInMB={50}
@@ -62,9 +55,9 @@ export default function photoNewDialog({ trigger }: PhotoNewDialog) {
           <div className="space-y-3">
             <Text variant="label-small">Selecionar álbuns</Text>
             <div className="flex flex-wrap gap-3">
-              {!loading &&
-                mockAlbum.length > 0 &&
-                mockAlbum.map((album) => (
+              {!isLoadingAlbums &&
+                albums.length > 0 &&
+                albums.map((album) => (
                   <Button
                     key={album.id}
                     variant="ghost"
@@ -74,7 +67,7 @@ export default function photoNewDialog({ trigger }: PhotoNewDialog) {
                     {album.title}
                   </Button>
                 ))}
-              {loading &&
+              {isLoadingAlbums &&
                 Array.from({ length: 5 }).map((_, index) => (
                   <Skeleton
                     // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>

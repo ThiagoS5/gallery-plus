@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NuqsAdapter } from "nuqs/adapters/react-router/v7";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Components from "./components/organism/components";
 import LayoutMain from "./components/templates/layout-main";
@@ -10,15 +11,17 @@ const queryClint = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClint}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<LayoutMain />}>
-            <Route index element={<PageHome />} />
-            <Route path="/fotos/:id" element={<PagePhotoDetails />} />
-            <Route path="/componentes" element={<Components />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <NuqsAdapter>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<LayoutMain />}>
+              <Route index element={<PageHome />} />
+              <Route path="/fotos/:id" element={<PagePhotoDetails />} />
+              <Route path="/componentes" element={<Components />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </NuqsAdapter>
     </QueryClientProvider>
   );
 }

@@ -120,7 +120,9 @@ export default function InputSingleFile({
         </>
       ) : (
         <>
-          {replaceBy}
+          {React.cloneElement(replaceBy as React.ReactElement, {
+            src: URL.createObjectURL(formFile),
+          })}
           <div
             className="flex gap-3 items-center border-border-primary 
   border border-solid mt-5 p-3 rounded"

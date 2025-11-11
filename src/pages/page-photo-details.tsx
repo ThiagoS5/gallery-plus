@@ -5,24 +5,19 @@ import Skeleton from "../components/atom/skeleton";
 import Text from "../components/atom/text";
 import ImagePreview from "../components/molecules/image-preview";
 import AlbumsListSelectable from "../contexts/albums/components/albums-list-selectable";
+import useAlbums from "../contexts/albums/hooks/use-albums";
 import PhotosNavigator from "../contexts/photos/components/photos-navigator";
+import usePhoto from "../contexts/photos/hooks/use-photo";
 import type { Photo } from "../contexts/photos/models/photo";
-import { MOCK_ALBUMS_LIST } from "../mocks/data";
 
 export default function PagePhotoDetails() {
   const { id } = useParams();
+  const { photo, isLoadingPhoto, nextPhotoId, previousPhotoId } = usePhoto(id);
+  const { albums, isLoadingAlbums } = useAlbums();
 
-  //teste mock
-  const isLoadingPhoto = false;
-  const photo = {
-    id: "1",
-    title: "Pôr do sol na praia",
-    imageId: "portrait-tower.png",
-    albums: [
-      { id: "1", title: "tree" },
-      { id: "a2", title: "Paisagens" },
-    ],
-  } as Photo;
+  if (!isLoadingPhoto && !photo) {
+    return <div>Foto não encontrada</div>;
+  }
   return (
     <Container>
       <header className="flex items-center justify-between gap-8 mb-8">
@@ -33,13 +28,17 @@ export default function PagePhotoDetails() {
         ) : (
           <Skeleton className="w-48 h-8" />
         )}
-        <PhotosNavigator />
+        <PhotosNavigator
+          previousPhotoId={previousPhotoId}
+          nextPhotoId={nextPhotoId}
+          loading={isLoadingPhoto}
+        />
       </header>
       <div className="grid grid-cols-[21rem_1fr] gap-24">
         <div className="space-y-3">
           {!isLoadingPhoto ? (
             <ImagePreview
-              src={`/images/${photo?.imageId}`}
+              src={`${import.meta.env.VITE_IMAGES_URL}/${photo?.imageId}`}
               title={photo?.title}
               imageClassName="h-[21rem]"
             />
@@ -56,7 +55,11 @@ export default function PagePhotoDetails() {
           <Text as="h3" variant="heading-medium" className="mb-6">
             Álbuns
           </Text>
-          <AlbumsListSelectable photo={photo} albums={MOCK_ALBUMS_LIST} />
+          <AlbumsListSelectable
+            photo={photo as Photo}
+            albums={albums}
+            loading={isLoadingAlbums}
+          />
         </div>
       </div>
     </Container>
