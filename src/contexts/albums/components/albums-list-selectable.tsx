@@ -41,7 +41,7 @@ export default function albumsListSelectable({
               </Text>
               <InputCheckbox
                 defaultChecked={isChecked(album.id)}
-                onClick={() => handlePhotoOnAlbums(album.id)}
+                onChange={() => handlePhotoOnAlbums(album.id)}
               />
             </div>
             {index !== albums.length - 1 && <Divider className="mt-4" />}
