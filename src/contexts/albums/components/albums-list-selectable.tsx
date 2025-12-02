@@ -57,7 +57,7 @@ export default function albumsListSelectable({
         ))}
       {loading &&
         Array.from({ length: 5 }).map((_, index) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+          // biome-ignore lint/suspicious/noArrayIndexKey: The list is static and will not be reordered.
           <li key={`albums-list-${index}`}>
             <Skeleton className="h-[2.5rem]"></Skeleton>
           </li>

@@ -25,6 +25,7 @@ export default function PhotosNavigator({
       {!loading ? (
         <>
           <ButtonIcon
+            aria-label="Imagem anterior"
             icon={ArrowLeftIcon}
             variant="secondary"
             disabled={!previousPhotoId}

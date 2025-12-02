@@ -69,6 +69,7 @@ export default function photoNewDialog({ trigger }: PhotoNewDialogProps) {
           <DialogHeader>Adicionar foto</DialogHeader>
           <DialogBody className="flex flex-col gap-5">
             <InputText
+              aria-label="Título da foto"
               placeholder="Adicione um título"
               maxLength={255}
               error={form.formState.errors.title?.message}
@@ -110,7 +111,7 @@ export default function photoNewDialog({ trigger }: PhotoNewDialogProps) {
                 {isLoadingAlbums &&
                   Array.from({ length: 5 }).map((_, index) => (
                     <Skeleton
-                      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                      // biome-ignore lint/suspicious/noArrayIndexKey: The list is static and will not be reordered.
                       key={`album-loading-${index}`}
                       className="h-7 w-20"
                     />

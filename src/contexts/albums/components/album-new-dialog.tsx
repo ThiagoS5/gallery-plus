@@ -65,6 +65,7 @@ export default function albumNewDialog({ trigger }: AlbumNewDialogProps) {
           <DialogHeader>Criar Álbum</DialogHeader>
           <DialogBody className="flex flex-col gap-5">
             <InputText
+              aria-label="Título do álbum"
               placeholder="Adicione um título"
               maxLength={155}
               error={form.formState.errors.title?.message}

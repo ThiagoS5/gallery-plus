@@ -85,7 +85,7 @@ export function DialogHeader({
           </Text>
         </DialogPrimitive.Title>
         <DialogClose asChild>
-          <ButtonIcon icon={XIcon} variant="ghost" />
+          <ButtonIcon aria-label="Fechar" icon={XIcon} variant="ghost" />
         </DialogClose>
       </header>
       <Divider className="mt-1.5 mb-5" />

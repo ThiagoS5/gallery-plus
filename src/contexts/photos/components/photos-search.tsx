@@ -24,6 +24,7 @@ export default function PhotosSearch() {
   return (
     <div>
       <InputText
+        aria-label="Buscar fotos"
         icon={SearchIcon}
         placeholder="Buscar fotos..."
         className="flex-1"
