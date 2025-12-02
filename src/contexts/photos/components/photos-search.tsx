@@ -22,12 +22,11 @@ export default function PhotosSearch() {
   }
 
   return (
-    <div>
+    <div className="flex-1">
       <InputText
         aria-label="Buscar fotos"
         icon={SearchIcon}
         placeholder="Buscar fotos..."
-        className="flex-1"
         onChange={handleInputChange}
         value={inputValue}
       />

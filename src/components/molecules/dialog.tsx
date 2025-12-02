@@ -10,6 +10,19 @@ import ButtonIcon from "../molecules/button-icon";
 export const Dialog = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;
 export const DialogClose = DialogPrimitive.Close;
+export const DialogTitle = DialogPrimitive.Title;
+
+export function DialogDescription({
+	className,
+	...props
+}: React.ComponentProps<typeof DialogPrimitive.Description>) {
+	return (
+		<DialogPrimitive.Description
+			className={cn("text-accent-paragraph", className)}
+			{...props}
+		/>
+	);
+}
 
 export function DialogOverlay({
   className,

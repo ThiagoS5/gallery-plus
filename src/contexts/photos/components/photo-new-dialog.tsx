@@ -7,15 +7,16 @@ import Skeleton from "../../../components/atom/skeleton";
 import Text from "../../../components/atom/text";
 import Alert from "../../../components/molecules/alert";
 import {
-  Dialog,
-  DialogBody,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTrigger,
-} from "../../../components/molecules/dialog";
-import ImagePreview from "../../../components/molecules/image-preview";
+	Dialog,
+	DialogBody,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "../../../components/molecules/dialog";import ImagePreview from "../../../components/molecules/image-preview";
 import InputSingleFile from "../../../components/molecules/input-single-file";
 import useAlbums from "../../albums/hooks/use-albums";
 import usePhoto from "../hooks/use-photo";
@@ -63,12 +64,16 @@ export default function photoNewDialog({ trigger }: PhotoNewDialogProps) {
 
   return (
     <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-      <DialogTrigger>{trigger}</DialogTrigger>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent>
         <form onSubmit={form.handleSubmit(handleSubmit)}>
-          <DialogHeader>Adicionar foto</DialogHeader>
-          <DialogBody className="flex flex-col gap-5">
-            <InputText
+          			<DialogHeader>
+          				<DialogTitle>Adicionar foto</DialogTitle>
+          				<DialogDescription>
+          					Preencha os campos abaixo para adicionar uma nova foto.
+          				</DialogDescription>
+          			</DialogHeader>
+          			<DialogBody className="flex flex-col gap-5">            <InputText
               aria-label="Título da foto"
               placeholder="Adicione um título"
               maxLength={255}

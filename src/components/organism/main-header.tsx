@@ -21,14 +21,24 @@ export default function MainHeader({ className, ...props }: MainHeaderProps) {
       {...props}
     >
       <div className="w-full flex justify-between items-center md:hidden">
-        <Link to="/">
+        <Link to="/" aria-label="Página inicial">
           <Logo className="h-5" />
         </Link>
         <div className="flex items-center gap-3">
-          <PhotoNewDialog trigger={<Button size="sm">Nova foto</Button>} />
+          <PhotoNewDialog
+            trigger={
+              <Button size="sm" aria-label="Adicionar nova foto">
+                Nova foto
+              </Button>
+            }
+          />
           <AlbumNewDialog
             trigger={
-              <Button size="sm" variant="secondary">
+              <Button
+                size="sm"
+                variant="secondary"
+                aria-label="Criar novo álbum"
+              >
                 Criar álbum
               </Button>
             }
@@ -39,15 +49,25 @@ export default function MainHeader({ className, ...props }: MainHeaderProps) {
         {pathname === "/" && <PhotosSearch />}
       </div>
       <div className="hidden md:flex w-full justify-between items-center gap-10">
-        <Link to="/">
+        <Link to="/" aria-label="Página inicial">
           <Logo className="h-5" />
         </Link>
         {pathname === "/" && <PhotosSearch />}
         <div className="flex items-center gap-3">
-          <PhotoNewDialog trigger={<Button size="md">Nova foto</Button>} />
+          <PhotoNewDialog
+            trigger={
+              <Button size="md" aria-label="Adicionar nova foto">
+                Nova foto
+              </Button>
+            }
+          />
           <AlbumNewDialog
             trigger={
-              <Button size="md" variant="secondary">
+              <Button
+                size="md"
+                variant="secondary"
+                aria-label="Criar novo álbum"
+              >
                 Criar álbum
               </Button>
             }

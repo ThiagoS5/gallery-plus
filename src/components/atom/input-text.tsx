@@ -29,7 +29,6 @@ export const inputTextVariantes = tv({
   base: `
     bg-transparent outline-none placeholder:text-placeholder
     text-accent-paragraph flex-1
-    
     `,
 });
 

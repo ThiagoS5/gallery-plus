@@ -119,11 +119,18 @@ export default function Button({
 			>
 				{children}
 			</Text>
-			{(icon || handling) && (
+			{handling && (
 				<Icon
-					svg={handling ? SpinnerIcon : icon!}
-					animate={handling}
-					className={buttonIconVariants({ variant, size, handling })}
+					svg={SpinnerIcon}
+					animate={true}
+					className={buttonIconVariants({ variant, size, handling: true })}
+				/>
+			)}
+			{!handling && icon && (
+				<Icon
+					svg={icon}
+					animate={false}
+					className={buttonIconVariants({ variant, size, handling: false })}
 				/>
 			)}
 		</button>

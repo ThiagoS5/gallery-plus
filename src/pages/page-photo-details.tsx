@@ -24,7 +24,11 @@ export default function PagePhotoDetails() {
     });
   }
   if (!isLoadingPhoto && !photo) {
-    return <div>Foto não encontrada</div>;
+    return (
+      <div className="flex-1 flex flex-col justify-center items-center">
+        <Text variant="heading-large">Foto não encontrada</Text>
+      </div>
+    );
   }
   return (
     <Container>

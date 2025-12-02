@@ -25,7 +25,9 @@ export default function AlbumsFilter({
       )}
       {...props}
     >
-      <Text variant="heading-small">Álbuns</Text>
+      <Text as="h1" variant="heading-small">
+        Álbuns
+      </Text>
       <div className="flex flex-wrap justify-center gap-3">
         {!loading ? (
           <>
