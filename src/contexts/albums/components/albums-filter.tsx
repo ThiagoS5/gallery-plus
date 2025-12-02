@@ -19,11 +19,14 @@ export default function AlbumsFilter({
 
   return (
     <div
-      className={cx("flex items-center gap-3.5 overflow-x-auto", className)}
+      className={cx(
+        "flex flex-col sm:flex-row items-center sm:items-center gap-3.5",
+        className,
+      )}
       {...props}
     >
       <Text variant="heading-small">Álbuns</Text>
-      <div className="flex gap-3">
+      <div className="flex flex-wrap justify-center gap-3">
         {!loading ? (
           <>
             <Button

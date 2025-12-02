@@ -15,23 +15,45 @@ export default function MainHeader({ className, ...props }: MainHeaderProps) {
   return (
     <Container
       as="header"
-      className={cx("flex justify-between items-center gap-10", className)}
+      className={cx(
+        "flex flex-col md:flex-row justify-between items-center gap-4",
+        className
+      )}
       {...props}
     >
-      <Link to="/">
-        <Logo className="h-5" />
-      </Link>
-      {pathname === "/" && (
-        <>
-          <PhotosSearch />
-          <Divider orientation="vertical" className="h-10" />
-        </>
-      )}
-      <div className="flex items-center gap-3">
-        <PhotoNewDialog trigger={<Button>Nova foto</Button>} />
-        <AlbumNewDialog
-          trigger={<Button variant="secondary">Criar álbum</Button>}
-        />
+      <div className="w-full flex justify-between items-center md:hidden">
+        <Link to="/">
+          <Logo className="h-5" />
+        </Link>
+        <div className="flex items-center gap-3">
+          <PhotoNewDialog trigger={<Button size="sm">Nova foto</Button>} />
+          <AlbumNewDialog
+            trigger={
+              <Button size="sm" variant="secondary">
+                Criar álbum
+              </Button>
+            }
+          />
+        </div>
+      </div>
+      <div className="w-full md:hidden">
+        {pathname === "/" && <PhotosSearch />}
+      </div>
+      <div className="hidden md:flex w-full justify-between items-center gap-10">
+        <Link to="/">
+          <Logo className="h-5" />
+        </Link>
+        {pathname === "/" && <PhotosSearch />}
+        <div className="flex items-center gap-3">
+          <PhotoNewDialog trigger={<Button size="md">Nova foto</Button>} />
+          <AlbumNewDialog
+            trigger={
+              <Button size="md" variant="secondary">
+                Criar álbum
+              </Button>
+            }
+          />
+        </div>
       </div>
     </Container>
   );

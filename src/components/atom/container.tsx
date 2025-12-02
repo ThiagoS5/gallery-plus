@@ -5,7 +5,7 @@ export const containerVariants = tv({
 	base: "mx-auto",
 	variants: {
 		size: {
-			md: "max-w-[62rem] px-2",
+			md: "max-w-[62rem] px-4 sm:px-2",
 		},
 	},
 	defaultVariants: {
