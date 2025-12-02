@@ -13,6 +13,7 @@
   --color-border-active: #4c4c5d;
   --color-accent-brand: #007BFF;
   --color-accent-brand-light: #66eae1;
+  --color-accent-brand-text: #000000;
   --color-accent-red: #f54a26;
   --color-heading: #fafcff;
   --color-accent-paragraph: #f1f7ff;
@@ -22,6 +23,10 @@
   --color-label-inverse: #FFFFFF;
 
   --font-sans: "Mulish", sans-serif;
+}
+
+@theme {
+  --color-accent-brand-text: var(--color-accent-brand-text);
 }
 
 @theme inline {

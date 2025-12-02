@@ -39,7 +39,7 @@ export const buttonVariants = tv({
 export const buttonTextVariants = tv({
 	variants: {
 		variant: {
-			primary: "text-label-inverse",
+			primary: "text-accent-brand-text",
 			secondary: "text-label",
 			destructive: "text-accent-red",
 			ghost: "text-accent-paragraph",
