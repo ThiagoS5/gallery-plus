@@ -1,5 +1,5 @@
-import { tv, type VariantProps } from "tailwind-variants";
 import type React from "react";
+import { tv, type VariantProps } from "tailwind-variants";
 
 export const skeletonVariants = tv({
 	base: "animate-pulse bg-background-secondary pointer-events-none",

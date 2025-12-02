@@ -1,7 +1,7 @@
-import { writeFile, unlink, mkdir } from "fs/promises";
-import { existsSync } from "fs";
-import { join, resolve, extname } from "path";
-import { randomUUID } from "crypto";
+import { randomUUID } from "node:crypto";
+import { existsSync } from "node:fs";
+import { mkdir, unlink, writeFile } from "node:fs/promises";
+import { extname, join, resolve } from "node:path";
 
 export class ImageService {
 	private imagesDir: string;

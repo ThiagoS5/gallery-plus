@@ -18,7 +18,7 @@ import {
 import PhotoImageSelectable from "../../photos/components/photo-image-selectable";
 import usePhotos from "../../photos/hooks/use-photos";
 import useAlbum from "../hooks/use-album";
-import { albumNewFormSchema, type AlbumNewFormSchema } from "../schemas";
+import { type AlbumNewFormSchema, albumNewFormSchema } from "../schemas";
 
 interface AlbumNewDialogProps {
   trigger: React.ReactNode;
@@ -95,7 +95,7 @@ export default function albumNewDialog({ trigger }: AlbumNewDialogProps) {
                 <div className="flex flex-wrap gap-2">
                   {Array.from({ length: 4 }).map((_, index) => (
                     <Skeleton
-                      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                      // biome-ignore lint/suspicious/noArrayIndexKey: The list is static and will not be reordered.
                       key={`photo-loading-${index}`}
                       className="w-20 h-20 rounded-lg"
                     />

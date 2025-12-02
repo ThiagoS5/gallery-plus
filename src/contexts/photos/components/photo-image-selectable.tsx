@@ -1,7 +1,7 @@
 import { useId, useState } from "react";
+import { tv } from "tailwind-variants";
 import ImagePreview from "../../../components/molecules/image-preview";
 import InputCheckbox from "../../../components/molecules/input-checkbox";
-import { tv } from "tailwind-variants";
 
 export const photoImageSelectableVariants = tv({
   base: `rounded-lg relative cursor-pointer `,

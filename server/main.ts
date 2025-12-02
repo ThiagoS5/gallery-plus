@@ -1,13 +1,13 @@
-import Fastify from "fastify";
+import { resolve } from "node:path";
 import multipart from "@fastify/multipart";
 import staticFiles from "@fastify/static";
-import { resolve } from "path";
-import { DatabaseService } from "./services/database-service";
-import { ImageService } from "./services/image-service";
-import { PhotosService } from "./photos/photos-service";
+import Fastify from "fastify";
+import { albumsRoutes } from "./albums/albums-routes";
 import { AlbumsService } from "./albums/albums-service";
 import { photosRoutes } from "./photos/photos-routes";
-import { albumsRoutes } from "./albums/albums-routes";
+import { PhotosService } from "./photos/photos-service";
+import { DatabaseService } from "./services/database-service";
+import { ImageService } from "./services/image-service";
 
 // Start server
 const start = async () => {
@@ -47,12 +47,12 @@ const start = async () => {
 	await albumsRoutes(fastify, albumsService);
 
 	// Health check endpoint
-	fastify.get("/health", async (request, reply) => {
+	fastify.get("/health", async (_request, reply) => {
 		reply.send({ status: "ok", timestamp: new Date().toISOString() });
 	});
 
 	try {
-		const port = parseInt(process.env.PORT || "5799");
+		const port = parseInt(process.env.PORT || "5799", 10);
 
 		await fastify.listen({ port, host: "0.0.0.0" });
 		console.log(`🚀 Server running at http://localhost:${port}`);

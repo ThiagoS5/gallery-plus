@@ -6,7 +6,6 @@ import PhotoNewDialog from "../../contexts/photos/components/photo-new-dialog";
 import PhotosSearch from "../../contexts/photos/components/photos-search";
 import Button from "../atom/button";
 import Container from "../atom/container";
-import Divider from "../atom/divider";
 
 interface MainHeaderProps extends React.ComponentProps<typeof Container> {}
 export default function MainHeader({ className, ...props }: MainHeaderProps) {

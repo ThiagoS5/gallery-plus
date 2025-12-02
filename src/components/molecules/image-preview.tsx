@@ -21,6 +21,7 @@ export default function ImagePreview({
   return (
     <div className={imagePreviewVariants({ className })}>
       <img
+        alt={props.title || ""}
         className={imagePreviewImageVariants({ className: imageClassName })}
         {...props}
       />

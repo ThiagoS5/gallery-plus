@@ -1,6 +1,6 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { api } from "../../../helpers/api";
-import { useQueryClient } from "@tanstack/react-query";
 
 export default function usePhotoAlbums() {
   const queryClient = useQueryClient();

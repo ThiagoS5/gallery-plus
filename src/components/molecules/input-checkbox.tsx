@@ -1,4 +1,4 @@
-import { type VariantProps, tv } from "tailwind-variants";
+import { tv, type VariantProps } from "tailwind-variants";
 import CheckIcon from "../../assets/icons/check.svg?react";
 import Icon from "../atom/icon";
 

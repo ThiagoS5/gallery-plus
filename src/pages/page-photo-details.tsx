@@ -1,3 +1,4 @@
+import { useTransition } from "react";
 import { useParams } from "react-router";
 import Button from "../components/atom/button";
 import Container from "../components/atom/container";
@@ -9,7 +10,6 @@ import useAlbums from "../contexts/albums/hooks/use-albums";
 import PhotosNavigator from "../contexts/photos/components/photos-navigator";
 import usePhoto from "../contexts/photos/hooks/use-photo";
 import type { Photo } from "../contexts/photos/models/photo";
-import { useTransition } from "react";
 
 export default function PagePhotoDetails() {
   const { id } = useParams();
@@ -20,7 +20,7 @@ export default function PagePhotoDetails() {
 
   function handleDeletePhoto() {
     setIsDeletingPhoto(async () => {
-      await deletePhoto(photo!.id);
+      await deletePhoto(photo?.id);
     });
   }
   if (!isLoadingPhoto && !photo) {

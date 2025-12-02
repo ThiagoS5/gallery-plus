@@ -1,14 +1,14 @@
 import type { FastifyInstance } from "fastify";
 import { ZodError } from "zod";
+import { albumParamsSchema, createAlbumSchema } from "./albums-interfaces";
 import type { AlbumsService } from "./albums-service";
-import { createAlbumSchema, albumParamsSchema } from "./albums-interfaces";
 
 export async function albumsRoutes(
 	fastify: FastifyInstance,
 	albumsService: AlbumsService,
 ) {
 	// GET /albums
-	fastify.get("/albums", async (request, reply) => {
+	fastify.get("/albums", async (_request, reply) => {
 		try {
 			const albums = await albumsService.getAllAlbums();
 			reply.send(albums);
